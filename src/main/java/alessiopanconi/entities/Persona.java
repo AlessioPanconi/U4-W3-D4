@@ -1,5 +1,6 @@
 package alessiopanconi.entities;
 
+import alessiopanconi.entities.EventoFigli.GaraDiAtletica;
 import alessiopanconi.entities.enums.Sesso;
 import jakarta.persistence.*;
 
@@ -31,6 +32,11 @@ public class Persona {
     //persona
     @OneToMany(mappedBy = "persona")
     private List<Partecipazioni> partecipazioni;
+    //gara Atletica
+    @ManyToMany(mappedBy = "atleti")
+    private List<GaraDiAtletica> gare;
+    @OneToMany(mappedBy = "vincitore")
+    private List<GaraDiAtletica> gareVinte;
 
     //COSTRUTTORI
     public Persona() {
@@ -64,6 +70,12 @@ public class Persona {
     }
     public List<Partecipazioni> getPartecipazioni() {
         return partecipazioni;
+    }
+    public List<GaraDiAtletica> getGare() {
+        return gare;
+    }
+    public List<GaraDiAtletica> getGareVinte() {
+        return gareVinte;
     }
 
     //SETTER

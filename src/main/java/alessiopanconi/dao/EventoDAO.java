@@ -56,8 +56,9 @@ public class EventoDAO {
 
     }
 
-    public List<Concerto> getConcertiInStreaming(){
-        TypedQuery<Concerto> query = entityManager.createQuery("SELECT a FROM Concerto a WHERE a.inStreaming = true", Concerto.class);
+    public List<Concerto> getConcertiInStreaming(boolean inStreaming) {
+        TypedQuery<Concerto> query = entityManager.createQuery("SELECT a FROM Concerto a WHERE a.inStreaming = :streaming", Concerto.class);
+        query.setParameter("streaming", inStreaming);
         return query.getResultList();
     }
 
